@@ -13,12 +13,13 @@ namespace Board
         [SerializeField] private Transform indicatorTransform;
         private ManagerParent _managerParent;
         private int _currentCellIndex = 4;
-        private Cell.Controller CurrentCell => Cells[_currentCellIndex];
         private Cell.Controller[] EmptyCells => Cells.Where(cell => cell.Content == Content.Empty).ToArray();
 
         private Content _playerSide;
         private Content _turkSide;
         private Content _currentSide = Content.X;
+        
+        private Cell.Controller CurrentCell => Cells[_currentCellIndex];
         private void OnValidate()
         {
             for (var i = 0; i < 1; ++i)
@@ -37,10 +38,8 @@ namespace Board
             _managerParent.InputManager.InputActions.Main.Movement.performed += HandleMovementInput;
             _managerParent.InputManager.InputActions.Main.Mark.performed += HandleMarkInput;
             
-
-            // TODO
-            // Change 0 to 50
-            (_playerSide, _turkSide) = Random.Range(0, 100) > -1 ? (Content.X, Content.O) : (Content.O, Content.X);
+            (_playerSide, _turkSide) = Random.Range(0, 100) > 101 ? (Content.X, Content.O) : (Content.O, Content.X);
+            if (_currentSide == _turkSide) MarkTurkCell();
         }
 
         private void HandleMovementInput(InputAction.CallbackContext context)
@@ -77,7 +76,8 @@ namespace Board
 
         private void HandleMarkInput(InputAction.CallbackContext context)
         {
-            if (_currentSide != _playerSide) return;
+            if (_currentSide != _playerSide || CurrentCell.Content != Content.Empty) return;
+            
             MarkCell(CurrentCell, _playerSide);
             
             MarkTurkCell();
@@ -86,7 +86,6 @@ namespace Board
         private void MarkTurkCell()
         {
             if (_currentSide != _turkSide) return;
-            
             var bestCell = GetBestCell();
             MarkCell(bestCell, _turkSide);
         }
@@ -96,8 +95,8 @@ namespace Board
             cell.MarkCell(content);
             _currentSide = Utility.Parser.GetOppositeSide(_currentSide);
         }
-        
-        public Result GetBoardGameState()
+
+        private Result GetBoardGameState()
         {
             for (var i = 0; i < 3; ++i)
             {
@@ -144,9 +143,7 @@ namespace Board
         
         private Board.Cell.Controller GetBestCell()
         {
-            var emptyCells = EmptyCells;
-
-            foreach (var cell in emptyCells)
+            foreach (var cell in EmptyCells)
             {
                 cell.MarkCell(_turkSide, true);
                 if (GetBoardGameState() == Utility.Parser.ParseWinner(_turkSide))
@@ -155,7 +152,10 @@ namespace Board
                     return cell;
                 }
                 cell.MarkCell(Content.Empty, true);
-                
+            }
+            
+            foreach (var cell in EmptyCells)
+            {
                 cell.MarkCell(_playerSide, true);
                 if (GetBoardGameState() == Utility.Parser.ParseWinner(_playerSide))
                 {
@@ -165,7 +165,7 @@ namespace Board
                 cell.MarkCell(Content.Empty, true);
             }
             
-            return emptyCells[Random.Range(0, emptyCells.Length)];
+            return EmptyCells[Random.Range(0, EmptyCells.Length)];
         }
     }
 }

@@ -18,6 +18,8 @@ namespace Board.Cell
 
         public void MarkCell(Content content, bool isTemporary = false)
         {
+            Content = content;
+            
             if (!isTemporary)
             {
                 spriteRenderer.sprite = content switch
