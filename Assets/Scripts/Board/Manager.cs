@@ -25,7 +25,7 @@ namespace Board
         private void SpawnBoard()
         {
             if (_boardController) Destroy(_boardController.gameObject);
-            _boardController = Instantiate(boardPrefab, boardTransform);
+            _boardController = Instantiate(boardPrefab, boardTransform.position, Quaternion.identity);
         }
     }
 }

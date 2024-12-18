@@ -93,6 +93,7 @@ namespace Board
         private void MarkCell(Cell.Controller cell, Content content)
         {
             cell.MarkCell(content);
+            if (GetBoardGameState() != Result.MatchNotOver) _managerParent.BoardManager.ResetBoard?.Invoke();
             _currentSide = Utility.Parser.GetOppositeSide(_currentSide);
         }
 
