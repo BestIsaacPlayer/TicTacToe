@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Board.Cell;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -13,6 +14,7 @@ namespace Board
         private ManagerParent _managerParent;
         private int _currentCellIndex = 4;
         private Cell.Controller CurrentCell => Cells[_currentCellIndex];
+        public Cell.Controller[] EmptyCells => Cells.Where(cell => cell.Content == Content.Empty).ToArray();
 
         private Content _playerSide;
         private Content _turkSide;
@@ -76,6 +78,13 @@ namespace Board
         {
             if (_currentSide != _playerSide) return;
             MarkCell(CurrentCell);
+        }
+
+        public void MarkTurkCell(Cell.Controller cell)
+        {
+            if (_currentSide != _turkSide) return;
+            cell.MarkCell(_currentSide);
+            _currentSide = Utility.Parser.GetOppositeSide(_currentSide);
         }
 
         private void MarkCell(Cell.Controller cell)
