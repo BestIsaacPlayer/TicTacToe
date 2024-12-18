@@ -33,6 +33,16 @@ namespace Utility
             
             return inspectorName.ToString();
         }
+        
+        /// <summary>
+        /// This function takes the cell content of Board.Cell.Content type and parses it into the Board.Result type
+        /// </summary>
+        /// <param name="content">Board.Cell.Content.X or Board.Cell.Content.Y parameter</param>
+        /// <returns>Board.Result.XWon or Board.Result.OWon based on the content input</returns>
+        public static Board.Result ParseWinner(Board.Cell.Content content)
+        {
+            return content == Board.Cell.Content.X ? Board.Result.XWon : Board.Result.OWon;
+        }
 
         public static Direction Vector2ToDirection(Vector2 vector)
         {
