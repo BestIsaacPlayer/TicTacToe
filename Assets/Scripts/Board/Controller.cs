@@ -14,7 +14,7 @@ namespace Board
         private ManagerParent _managerParent;
         private int _currentCellIndex = 4;
         private Cell.Controller CurrentCell => Cells[_currentCellIndex];
-        public Cell.Controller[] EmptyCells => Cells.Where(cell => cell.Content == Content.Empty).ToArray();
+        private Cell.Controller[] EmptyCells => Cells.Where(cell => cell.Content == Content.Empty).ToArray();
 
         private Content _playerSide;
         private Content _turkSide;
@@ -79,15 +79,15 @@ namespace Board
         {
             if (_currentSide != _playerSide) return;
             MarkCell(CurrentCell, _playerSide);
+            
+            MarkTurkCell();
         }
 
-        public void MarkTurkCell(Cell.Controller cell)
+        private void MarkTurkCell()
         {
             if (_currentSide != _turkSide) return;
             
-            // TODO
-            // Implement AI based cell choosing
-            var bestCell = Cells[0];
+            var bestCell = GetBestCell();
             MarkCell(bestCell, _turkSide);
         }
 
@@ -140,6 +140,32 @@ namespace Board
             }
 
             return Result.Draw;
+        }
+        
+        private Board.Cell.Controller GetBestCell()
+        {
+            var emptyCells = EmptyCells;
+
+            foreach (var cell in emptyCells)
+            {
+                cell.MarkCell(_turkSide, true);
+                if (GetBoardGameState() == Utility.Parser.ParseWinner(_turkSide))
+                {
+                    cell.MarkCell(Content.Empty, true);
+                    return cell;
+                }
+                cell.MarkCell(Content.Empty, true);
+                
+                cell.MarkCell(_playerSide, true);
+                if (GetBoardGameState() == Utility.Parser.ParseWinner(_playerSide))
+                {
+                    cell.MarkCell(Content.Empty, true);
+                    return cell;
+                }
+                cell.MarkCell(Content.Empty, true);
+            }
+            
+            return emptyCells[Random.Range(0, emptyCells.Length)];
         }
     }
 }

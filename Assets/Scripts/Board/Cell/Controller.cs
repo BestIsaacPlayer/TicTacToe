@@ -4,11 +4,29 @@ namespace Board.Cell
 {
     public class Controller : MonoBehaviour
     {
+        [SerializeField] private SpriteRenderer spriteRenderer;
+        [SerializeField] private Sprite xSprite;
+        [SerializeField] private Sprite oSprite;
         public Content Content { get; private set; } = Content.Empty;
 
-        public void MarkCell(Content content)
+        private void Awake()
         {
-            Content = content;
+            if (!spriteRenderer) Debug.LogError($"The {Utility.Parser.FieldToName(nameof(spriteRenderer))} field in the {gameObject.name} object is unset!");
+            if (!xSprite) Debug.LogError($"The {Utility.Parser.FieldToName(nameof(xSprite))} field in the {gameObject.name} object is unset!");
+            if (!oSprite) Debug.LogError($"The {Utility.Parser.FieldToName(nameof(oSprite))} field in the {gameObject.name} object is unset!");
+        }
+
+        public void MarkCell(Content content, bool isTemporary = false)
+        {
+            if (!isTemporary)
+            {
+                spriteRenderer.sprite = content switch
+                {
+                    Content.X => xSprite,
+                    Content.O => oSprite,
+                    _ => null
+                };
+            }
         }
     }
 }
