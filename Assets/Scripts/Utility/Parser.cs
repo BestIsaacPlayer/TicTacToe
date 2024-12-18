@@ -1,4 +1,6 @@
-﻿using System.Text;
+﻿using System.Numerics;
+using System.Text;
+using Vector2 = UnityEngine.Vector2;
 
 namespace Utility
 {
@@ -30,6 +32,16 @@ namespace Utility
             }
             
             return inspectorName.ToString();
+        }
+
+        public static Direction Vector2ToDirection(Vector2 vector)
+        {
+            return vector.x switch
+            {
+                > 0 => Direction.Right,
+                < 0 => Direction.Left,
+                _ => vector.y > 0 ? Direction.Up : Direction.Down
+            };
         }
     }
 }
