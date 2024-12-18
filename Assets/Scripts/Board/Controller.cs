@@ -18,6 +18,7 @@ namespace Board
         private Content _playerSide;
         private Content _turkSide;
         private Content _currentSide = Content.X;
+        private bool _isGameOver;
         
         private Cell.Controller CurrentCell => Cells[_currentCellIndex];
         private void OnValidate()
@@ -30,16 +31,29 @@ namespace Board
             if (!indicatorTransform) Debug.LogError($"The {Utility.Parser.FieldToName(nameof(indicatorTransform))} field in the {gameObject.name} object is unset!");
         }
 
-        private void Start()
+        private void Awake()
         {
+            Debug.Log("Dupa");
             _managerParent = FindFirstObjectByType<ManagerParent>();
             if (!_managerParent) Debug.LogError($"The {Utility.Parser.FieldToName(nameof(_managerParent))} field in the {gameObject.name} object is unset!");
+            
+            (_playerSide, _turkSide) = Random.Range(0, 100) > 49 ? (Content.X, Content.O) : (Content.O, Content.X);
+        }
 
+        private void Start()
+        {
             _managerParent.InputManager.InputActions.Main.Movement.performed += HandleMovementInput;
             _managerParent.InputManager.InputActions.Main.Mark.performed += HandleMarkInput;
             
-            (_playerSide, _turkSide) = Random.Range(0, 100) > 101 ? (Content.X, Content.O) : (Content.O, Content.X);
+            Debug.Log(EmptyCells.Length);
+            
             if (_currentSide == _turkSide) MarkTurkCell();
+        }
+
+        private void OnDestroy()
+        {
+            _managerParent.InputManager.InputActions.Main.Movement.performed -= HandleMovementInput;
+            _managerParent.InputManager.InputActions.Main.Mark.performed -= HandleMarkInput;
         }
 
         private void HandleMovementInput(InputAction.CallbackContext context)
@@ -76,7 +90,7 @@ namespace Board
 
         private void HandleMarkInput(InputAction.CallbackContext context)
         {
-            if (_currentSide != _playerSide || CurrentCell.Content != Content.Empty) return;
+            if (_currentSide != _playerSide || CurrentCell.Content != Content.Empty || _isGameOver) return;
             
             MarkCell(CurrentCell, _playerSide);
             
@@ -85,7 +99,7 @@ namespace Board
 
         private void MarkTurkCell()
         {
-            if (_currentSide != _turkSide) return;
+            if (_currentSide != _turkSide || _isGameOver) return;
             var bestCell = GetBestCell();
             MarkCell(bestCell, _turkSide);
         }
@@ -93,7 +107,11 @@ namespace Board
         private void MarkCell(Cell.Controller cell, Content content)
         {
             cell.MarkCell(content);
-            if (GetBoardGameState() != Result.MatchNotOver) _managerParent.BoardManager.ResetBoard?.Invoke();
+            if (GetBoardGameState() != Result.MatchNotOver)
+            {
+                _managerParent.BoardManager.ResetBoard?.Invoke();
+                _isGameOver = true;
+            }
             _currentSide = Utility.Parser.GetOppositeSide(_currentSide);
         }
 
