@@ -37,6 +37,15 @@ namespace Input
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Mark"",
+                    ""type"": ""Button"",
+                    ""id"": ""a772e6b5-9853-4744-8445-9d5f48d61183"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -94,6 +103,17 @@ namespace Input
                     ""action"": ""Movement"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1ca057df-f20a-4501-92a7-19743fb00777"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Mark"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -103,6 +123,7 @@ namespace Input
             // Main
             m_Main = asset.FindActionMap("Main", throwIfNotFound: true);
             m_Main_Movement = m_Main.FindAction("Movement", throwIfNotFound: true);
+            m_Main_Mark = m_Main.FindAction("Mark", throwIfNotFound: true);
         }
 
         ~@InputActions()
@@ -170,11 +191,13 @@ namespace Input
         private readonly InputActionMap m_Main;
         private List<IMainActions> m_MainActionsCallbackInterfaces = new List<IMainActions>();
         private readonly InputAction m_Main_Movement;
+        private readonly InputAction m_Main_Mark;
         public struct MainActions
         {
             private @InputActions m_Wrapper;
             public MainActions(@InputActions wrapper) { m_Wrapper = wrapper; }
             public InputAction @Movement => m_Wrapper.m_Main_Movement;
+            public InputAction @Mark => m_Wrapper.m_Main_Mark;
             public InputActionMap Get() { return m_Wrapper.m_Main; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -187,6 +210,9 @@ namespace Input
                 @Movement.started += instance.OnMovement;
                 @Movement.performed += instance.OnMovement;
                 @Movement.canceled += instance.OnMovement;
+                @Mark.started += instance.OnMark;
+                @Mark.performed += instance.OnMark;
+                @Mark.canceled += instance.OnMark;
             }
 
             private void UnregisterCallbacks(IMainActions instance)
@@ -194,6 +220,9 @@ namespace Input
                 @Movement.started -= instance.OnMovement;
                 @Movement.performed -= instance.OnMovement;
                 @Movement.canceled -= instance.OnMovement;
+                @Mark.started -= instance.OnMark;
+                @Mark.performed -= instance.OnMark;
+                @Mark.canceled -= instance.OnMark;
             }
 
             public void RemoveCallbacks(IMainActions instance)
@@ -214,6 +243,7 @@ namespace Input
         public interface IMainActions
         {
             void OnMovement(InputAction.CallbackContext context);
+            void OnMark(InputAction.CallbackContext context);
         }
     }
 }

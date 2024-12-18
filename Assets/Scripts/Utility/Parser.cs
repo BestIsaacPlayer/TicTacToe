@@ -43,5 +43,15 @@ namespace Utility
                 _ => vector.y > 0 ? Direction.Up : Direction.Down
             };
         }
+
+        public static Board.Cell.Content GetOppositeSide(Board.Cell.Content content)
+        {
+            return content switch
+            {
+                Board.Cell.Content.X => Board.Cell.Content.O,
+                Board.Cell.Content.O => Board.Cell.Content.X,
+                _ => Board.Cell.Content.Empty
+            };
+        }
     }
 }
