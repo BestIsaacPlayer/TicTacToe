@@ -9,8 +9,9 @@ namespace Board
     public class Controller : MonoBehaviour
     {
         [field: SerializeField] public Cell.Controller[] Cells { get; private set; } = new Cell.Controller[9];
+        [SerializeField] private Transform indicatorTransform;
         private ManagerParent _managerParent;
-        private int _currentCellIndex = 0;
+        private int _currentCellIndex = 4;
         private Cell.Controller CurrentCell => Cells[_currentCellIndex];
 
         private Content _playerSide;
@@ -22,6 +23,8 @@ namespace Board
             {
                 if (!Cells[i]) Debug.LogError($"The Element {i} in {Utility.Parser.FieldToName(nameof(Cells))} field in the {gameObject.name} object is unset!");
             }
+            
+            if (!indicatorTransform) Debug.LogError($"The {Utility.Parser.FieldToName(nameof(indicatorTransform))} field in the {gameObject.name} object is unset!");
         }
 
         private void Start()
@@ -66,7 +69,7 @@ namespace Board
             }
 
             _currentCellIndex = 3 * x + y;
-            Debug.Log(_currentCellIndex);
+            indicatorTransform.position = CurrentCell.transform.position;
         }
 
         private void HandleMarkInput(InputAction.CallbackContext context)
