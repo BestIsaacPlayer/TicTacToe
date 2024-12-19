@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Linq;
 using Board.Cell;
 using UnityEngine;
@@ -138,7 +139,14 @@ namespace Board
             if (_currentSide != _turkSide || _isGameOver) return;
             indicatorTransform.position = Cells[4].transform.position;
             _currentCellIndex = 4;
+            StartCoroutine(TurkMoveCoroutine());
+        }
+
+        private IEnumerator TurkMoveCoroutine()
+        {
+            
             var bestCell = GetBestCell();
+            yield return new WaitForSeconds(Random.Range(1.5f, 2.75f));
             MarkCell(bestCell, _turkSide);
         }
 
