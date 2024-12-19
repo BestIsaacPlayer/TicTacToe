@@ -2717,6 +2717,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1a0c7445f9f47c8acf4921b55fe2994, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  exitText: {fileID: 255242800}
+  noteText: {fileID: 1056497785}
+  markText: {fileID: 328749597}
 --- !u!1 &1446723753
 GameObject:
   m_ObjectHideFlags: 0
@@ -3994,7 +3997,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b911718ff9a0446b962bf26d40f9b7f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerInput: {fileID: 9125316755377044897}
+  <PlayerInput>k__BackingField: {fileID: 9125316755377044897}
 --- !u!114 &9125316755377044897
 MonoBehaviour:
   m_ObjectHideFlags: 0

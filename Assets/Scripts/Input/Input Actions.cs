@@ -191,7 +191,7 @@ namespace Input
                 {
                     ""name"": """",
                     ""id"": ""4b91fc6a-01f2-4d99-aae2-bf45a985f50f"",
-                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""path"": ""<Gamepad>/buttonEast"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Gamepad"",
@@ -213,7 +213,7 @@ namespace Input
                 {
                     ""name"": """",
                     ""id"": ""834abe72-72bb-4ec9-b3d5-047345078647"",
-                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""path"": ""<Gamepad>/buttonWest"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Gamepad"",
