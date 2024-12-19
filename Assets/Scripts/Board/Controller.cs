@@ -64,12 +64,12 @@ namespace Board
             
             if (_currentSide == _turkSide)
             {
-                _managerParent.ScreenOverlayManager.SwitchOverlay(_managerParent.ScreenOverlayManager.TurkThinkingOverlay);
+                _managerParent.ScreenOverlayManager.SwitchOverlay(_managerParent.ScreenOverlayManager.TurkThinkingOverlay, typeof(Controller));
                 MarkTurkCell();
             }
             else
             {
-                _managerParent.ScreenOverlayManager.SwitchOverlay(_managerParent.ScreenOverlayManager.PlayerMoveOverlay);
+                _managerParent.ScreenOverlayManager.SwitchOverlay(_managerParent.ScreenOverlayManager.PlayerMoveOverlay, typeof(Controller));
             }
         }
 
@@ -163,7 +163,7 @@ namespace Board
         {
             var bestCell = GetBestCell();
             yield return new WaitForSeconds(Random.Range(1.5f, 2.75f));
-            _managerParent.ScreenOverlayManager.SwitchOverlay(_managerParent.ScreenOverlayManager.PlayerMoveOverlay);
+            _managerParent.ScreenOverlayManager.SwitchOverlay(_managerParent.ScreenOverlayManager.PlayerMoveOverlay, typeof(Controller));
             StartCoroutine(MarkCell(bestCell, _turkSide));
         }
 
@@ -180,7 +180,7 @@ namespace Board
                 cell.spriteRenderer.color = new Color(color.r, color.g, color.b, timer / 1.5f);
                 timer += Time.deltaTime;
             }
-            if (content == _playerSide) _managerParent.ScreenOverlayManager.SwitchOverlay(_managerParent.ScreenOverlayManager.TurkThinkingOverlay);
+            if (content == _playerSide) _managerParent.ScreenOverlayManager.SwitchOverlay(_managerParent.ScreenOverlayManager.TurkThinkingOverlay, typeof(Controller));
             cell.spriteRenderer.color = new Color(color.r, color.g, color.b, 1.0f);
             _isGameOver = false;
             

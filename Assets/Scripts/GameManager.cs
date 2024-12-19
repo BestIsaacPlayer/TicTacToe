@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections;
-using Board;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -19,7 +18,7 @@ public class GameManager : MonoBehaviour
     {
         if (!managerParent) Debug.LogError($"The {Utility.Parser.FieldToName(nameof(managerParent))} field in the {gameObject.name} object is unset!");
         
-        managerParent.ScreenOverlayManager.SwitchOverlay(managerParent.ScreenOverlayManager.ScreenOffOverlay);
+        managerParent.ScreenOverlayManager.SwitchOverlay(managerParent.ScreenOverlayManager.ScreenOffOverlay, typeof(Board.Controller));
         managerParent.ScreenOverlayManager.OffScreenText.text = "You're out of credits!";
         _audioSource = managerParent.AudioManager.PlayClip(backgroundMusic, true);
     }
@@ -45,26 +44,26 @@ public class GameManager : MonoBehaviour
         managerParent.GameManager.StartGame();
     }
 
-    public void HandleGameOver(Result result)
+    public void HandleGameOver(Board.Result result)
     {
         Destroy(managerParent.TicTacToeBoardManager.TicTacToeBoardController.gameObject);
         StartCoroutine(HandleGameEndDisplay(result));
     }
 
-    private IEnumerator HandleGameEndDisplay(Result result)
+    private IEnumerator HandleGameEndDisplay(Board.Result result)
     {
-        managerParent.ScreenOverlayManager.SwitchOverlay(managerParent.ScreenOverlayManager.PlayerMoveOverlay);
+        managerParent.ScreenOverlayManager.SwitchOverlay(managerParent.ScreenOverlayManager.PlayerMoveOverlay, typeof(Board.Controller));
         managerParent.ScreenOverlayManager.MainScreenText.text = result switch {
-            Result.XWon => "X won!",
-            Result.OWon => "O won!",
-            Result.Draw => "It's a draw!",
-            Result.MatchNotOver => "Something went terribly wrong!",
+            Board.Result.XWon => "X won!",
+            Board.Result.OWon => "O won!",
+            Board.Result.Draw => "It's a draw!",
+            Board.Result.MatchNotOver => "Something went terribly wrong!",
             _ => throw new ArgumentOutOfRangeException(nameof(result), result, null)
         };
         yield return new WaitForSeconds(2f);
         managerParent.ScreenOverlayManager.OffScreenText.text = _insertedCoinsAmount < 1 ? "You're out of credits!" : "Press the MARK button to start the game!";
         managerParent.ScreenOverlayManager.MainScreenText.text = string.Empty;
-        managerParent.ScreenOverlayManager.SwitchOverlay(managerParent.ScreenOverlayManager.ScreenOffOverlay);
+        managerParent.ScreenOverlayManager.SwitchOverlay(managerParent.ScreenOverlayManager.ScreenOffOverlay, typeof(Board.Controller));
     }
 
     public void InsertCoin()
