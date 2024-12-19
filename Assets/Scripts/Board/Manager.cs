@@ -5,10 +5,11 @@ namespace Board
 {
     public class Manager : MonoBehaviour
     {
+        [Header("Board Setup")]
         [SerializeField] private Transform boardTransform;
         [SerializeField] private Controller boardPrefab;
-        public Action ResetBoard;
         public Controller BoardController { get; private set; }
+        public Action ResetBoard;
 
         private void OnValidate()
         {

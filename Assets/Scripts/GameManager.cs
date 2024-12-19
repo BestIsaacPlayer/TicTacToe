@@ -5,9 +5,12 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] private ManagerParent managerParent;
+    [Header("Sound Setup")]
     [SerializeField] private AudioClip backgroundMusic;
     [SerializeField] private AudioClip coinInsertSound;
+    
+    [Space]
+    [SerializeField] private ManagerParent managerParent;
     
     private int _insertedCoinsAmount;
     private AudioSource _audioSource;
@@ -15,6 +18,10 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         if (!managerParent) Debug.LogError($"The {Utility.Parser.FieldToName(nameof(managerParent))} field in the {gameObject.name} object is unset!");
+        
+        managerParent.ScreenOverlayManager.SwitchOverlay(managerParent.ScreenOverlayManager.ScreenOffOverlay);
+        managerParent.ScreenOverlayManager.OffScreenText.text = "You're out of credits!";
+        _audioSource = managerParent.AudioManager.PlayClip(backgroundMusic, true);
     }
 
     private void Start()
@@ -22,9 +29,6 @@ public class GameManager : MonoBehaviour
         managerParent.InputManager.InputActions.Main.Quit.performed += _ => HandleGameExit();
         managerParent.InputManager.InputActions.Main.Enter.performed += _ => InsertCoin();
         managerParent.InputManager.InputActions.Main.Mark.performed += _ => StartGameOnOffScreen();
-        managerParent.ScreenOverlayManager.SwitchOverlay(managerParent.ScreenOverlayManager.ScreenOffOverlay);
-        managerParent.ScreenOverlayManager.OffScreenText.text = "You're out of credits!";
-        _audioSource = managerParent.AudioManager.PlayClip(backgroundMusic, true);
     }
 
     public void StartGame()
@@ -39,7 +43,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void StartGameOnOffScreen()
+    private void StartGameOnOffScreen()
     {
         if (managerParent.BoardManager.BoardController == null)
         {
@@ -47,7 +51,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void HandleGameOver(Board.Result result)
+    public void HandleGameOver(Result result)
     {
         Destroy(managerParent.BoardManager.BoardController.gameObject);
         StartCoroutine(HandleGameEndDisplay(result));

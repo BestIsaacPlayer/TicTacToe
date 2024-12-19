@@ -10,18 +10,18 @@ namespace Board
 {
     public class Controller : MonoBehaviour
     {
+        [Header("Layout Setup")]
         [field: SerializeField] public Cell.Controller[] Cells { get; private set; } = new Cell.Controller[9];
         [SerializeField] private Transform indicatorTransform;
-        private ManagerParent _managerParent;
-        private int _currentCellIndex = 4;
-        private Cell.Controller[] EmptyCells => Cells.Where(cell => cell.Content == Content.Empty).ToArray();
 
         private Content _playerSide;
         private Content _turkSide;
         private Content _currentSide = Content.X;
         private bool _isGameOver;
-        
+        private int _currentCellIndex = 4;
+        private ManagerParent _managerParent;
         private Cell.Controller CurrentCell => Cells[_currentCellIndex];
+        private Cell.Controller[] EmptyCells => Cells.Where(cell => cell.Content == Content.Empty).ToArray();
         private void OnValidate()
         {
             for (var i = 0; i < 1; ++i)
@@ -41,6 +41,7 @@ namespace Board
         {
             _managerParent = FindFirstObjectByType<ManagerParent>();
             if (!_managerParent) Debug.LogError($"The {Utility.Parser.FieldToName(nameof(_managerParent))} field in the {gameObject.name} object is unset!");
+            _managerParent.ScreenOverlayManager.OffScreenText.text = "You're out of credits!";
             
             (_playerSide, _turkSide) = Random.Range(0, 100) > 49 ? (Content.X, Content.O) : (Content.O, Content.X);
         }
@@ -49,7 +50,6 @@ namespace Board
         {
             _managerParent.InputManager.InputActions.Main.Movement.performed += HandleMovementInput;
             _managerParent.InputManager.InputActions.Main.Mark.performed += HandleMarkInput;
-            _managerParent.ScreenOverlayManager.OffScreenText.text = "You're out of credits!";
 
             StartCoroutine(BoardLoadedDelay());
         }

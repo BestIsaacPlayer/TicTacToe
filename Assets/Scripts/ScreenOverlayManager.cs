@@ -4,9 +4,11 @@ using UnityEngine.UI;
 
 public class ScreenOverlayManager : MonoBehaviour
 {
+    [Header("Overlays Setup")]
     [field: SerializeField] public GameObject ScreenOffOverlay { get; private set; }
     [field: SerializeField] public GameObject TurkThinkingOverlay { get; private set; }
     [field: SerializeField] public GameObject PlayerMoveOverlay { get; private set; }
+    [Header("Text Fields Setup")]
     [field: SerializeField] public TextMeshProUGUI OffScreenText { get; set; }
     [field: SerializeField] public TextMeshProUGUI MainScreenText { get; set; }
 

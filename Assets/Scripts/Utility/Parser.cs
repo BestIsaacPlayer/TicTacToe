@@ -1,16 +1,10 @@
-﻿using System.Numerics;
-using System.Text;
+﻿using System.Text;
 using Vector2 = UnityEngine.Vector2;
 
 namespace Utility
 {
     public static class Parser
     {
-        /// <summary>
-        /// This function takes C# field's name following the Unity's private SerializedField naming convention (camelCase) and formats it, so that the result is the field's name in the Unity's inspector (Every word is upper case and separated by a whitespace).
-        /// </summary>
-        /// <param name="fieldName">C# SerializedField field name (camelCase).</param>
-        /// <returns>Formatted string, where all words are upper case and separated with a whitespace.</returns>
         public static string FieldToName(string fieldName)
         {
             if (string.IsNullOrEmpty(fieldName))
@@ -34,11 +28,6 @@ namespace Utility
             return inspectorName.ToString();
         }
         
-        /// <summary>
-        /// This function takes the cell content of Board.Cell.Content type and parses it into the Board.Result type
-        /// </summary>
-        /// <param name="content">Board.Cell.Content.X or Board.Cell.Content.Y parameter</param>
-        /// <returns>Board.Result.XWon or Board.Result.OWon based on the content input</returns>
         public static Board.Result ParseWinner(Board.Cell.Content content)
         {
             return content == Board.Cell.Content.X ? Board.Result.XWon : Board.Result.OWon;

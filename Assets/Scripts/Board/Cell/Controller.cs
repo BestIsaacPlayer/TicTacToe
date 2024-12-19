@@ -4,6 +4,7 @@ namespace Board.Cell
 {
     public class Controller : MonoBehaviour
     {
+        [Header("Sprite Setup")]
         [SerializeField] public SpriteRenderer spriteRenderer;
         [SerializeField] private Sprite xSprite;
         [SerializeField] private Sprite oSprite;

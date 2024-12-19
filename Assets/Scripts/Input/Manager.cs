@@ -5,8 +5,8 @@ namespace Input
 {
     public class Manager : MonoBehaviour
     {
-        public InputActions InputActions { get; private set; }
         [field: SerializeField] public PlayerInput PlayerInput { get; private set; }
+        public InputActions InputActions { get; private set; }
 
         private void Awake()
         {

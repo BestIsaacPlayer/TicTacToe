@@ -4,21 +4,22 @@ using UnityEngine.UI;
 
 public class ButtonController : MonoBehaviour
 {
-    private ManagerParent _managerParent;
-    
-    [SerializeField] private TextMeshProUGUI markText;
-
+    [Header("Instruction Note Setup")]
     [SerializeField] private Sprite noteTextKeyboardSprite;
     [SerializeField] private Sprite noteTextGamepadSprite;
     [SerializeField] private Image noteTextImage;
 
+    [Header("Exit Button Setup")]
     [SerializeField] private Image exitButtonImage;
     [SerializeField] private Sprite gamepadExitImage;
     [SerializeField] private Sprite keyboardExitImage;
     
+    [Header("Mark Button Setup")]
     [SerializeField] private Image markButtonImage;
     [SerializeField] private Sprite gamepadMarkButtonImage;
     [SerializeField] private Sprite keyboardMarkButtonImage;
+    
+    private ManagerParent _managerParent;
 
     private void Awake()
     {

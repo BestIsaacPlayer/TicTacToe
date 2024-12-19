@@ -2,6 +2,7 @@
 
 public class ManagerParent : MonoBehaviour
 {
+    [Header("Child Managers Setup")]
     [field: SerializeField] public Input.Manager InputManager { get; private set; }
     [field: SerializeField] public Board.Manager BoardManager { get; private set; }
     [field: SerializeField] public GameManager GameManager { get; private set; }
