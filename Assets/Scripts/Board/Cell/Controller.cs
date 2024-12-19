@@ -20,16 +20,15 @@ namespace Board.Cell
         public void MarkCell(Content content, bool isTemporary = false)
         {
             Content = content;
+
+            if (isTemporary) return;
             
-            if (!isTemporary)
+            spriteRenderer.sprite = content switch
             {
-                spriteRenderer.sprite = content switch
-                {
-                    Content.X => xSprite,
-                    Content.O => oSprite,
-                    _ => null
-                };
-            }
+                Content.X => xSprite,
+                Content.O => oSprite,
+                _ => null
+            };
         }
     }
 }

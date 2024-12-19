@@ -33,22 +33,16 @@ public class GameManager : MonoBehaviour
 
     public void StartGame()
     {
-        if (_insertedCoinsAmount < 1)
-        {
-        }
-        else
-        {
-            _insertedCoinsAmount--;
-            managerParent.BoardManager.ResetBoard();
-        }
+        if (_insertedCoinsAmount < 1) return;
+        
+        _insertedCoinsAmount--;
+        managerParent.BoardManager.ResetBoard();
     }
 
     private void StartGameOnOffScreen()
     {
-        if (managerParent.BoardManager.BoardController == null)
-        {
-            managerParent.GameManager.StartGame();
-        }
+        if (managerParent.BoardManager.BoardController != null) return;
+        managerParent.GameManager.StartGame();
     }
 
     public void HandleGameOver(Result result)

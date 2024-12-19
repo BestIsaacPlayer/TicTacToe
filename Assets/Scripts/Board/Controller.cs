@@ -202,7 +202,7 @@ namespace Board
                                 Cells[3 * i + 1].Content == Cells[3 * i + 2].Content;
                 if (isRowSame && Cells[3 * i].Content != Cell.Content.Empty)
                 {
-                    return Utility.Parser.ParseWinner(Cells[3 * i].Content);
+                    return Parser.ParseWinner(Cells[3 * i].Content);
                 }
             }
 
@@ -213,7 +213,7 @@ namespace Board
 
                 if (isColumnSame && Cells[i].Content != Content.Empty)
                 {
-                    return Utility.Parser.ParseWinner(Cells[i].Content);
+                    return Parser.ParseWinner(Cells[i].Content);
                 }
             }
 
@@ -225,7 +225,7 @@ namespace Board
 
             if (Cells[4].Content != Content.Empty && (isDiagonalSame[0] || isDiagonalSame[1]))
             {
-                return Utility.Parser.ParseWinner(Cells[4].Content);
+                return Parser.ParseWinner(Cells[4].Content);
             }
 
             for (var i = 0; i < 3; ++i)
@@ -244,7 +244,7 @@ namespace Board
             foreach (var cell in EmptyCells)
             {
                 cell.MarkCell(_turkSide, true);
-                if (GetBoardGameState() == Utility.Parser.ParseWinner(_turkSide))
+                if (GetBoardGameState() == Parser.ParseWinner(_turkSide))
                 {
                     cell.MarkCell(Content.Empty, true);
                     return cell;
@@ -255,7 +255,7 @@ namespace Board
             foreach (var cell in EmptyCells)
             {
                 cell.MarkCell(_playerSide, true);
-                if (GetBoardGameState() == Utility.Parser.ParseWinner(_playerSide))
+                if (GetBoardGameState() == Parser.ParseWinner(_playerSide))
                 {
                     cell.MarkCell(Content.Empty, true);
                     return cell;
