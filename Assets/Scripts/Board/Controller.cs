@@ -32,6 +32,11 @@ namespace Board
             if (!indicatorTransform) Debug.LogError($"The {Utility.Parser.FieldToName(nameof(indicatorTransform))} field in the {gameObject.name} object is unset!");
         }
 
+        private void Update()
+        {
+            indicatorTransform.gameObject.SetActive(!_isGameOver);
+        }
+
         private void Awake()
         {
             _managerParent = FindFirstObjectByType<ManagerParent>();
@@ -107,6 +112,7 @@ namespace Board
 
         public void HandleMovementInput(int direction)
         {
+            if (_isGameOver) return;
             var x = Math.DivRem(_currentCellIndex, 3, out var y);
 
             switch (direction)
@@ -139,10 +145,7 @@ namespace Board
         {
             if (_currentSide != _playerSide || CurrentCell.Content != Content.Empty || _isGameOver) return;
             
-            _managerParent.ScreenOverlayManager.SwitchOverlay(_managerParent.ScreenOverlayManager.TurkThinkingOverlay);
-            MarkCell(CurrentCell, _playerSide);
-            
-            MarkTurkCell();
+            StartCoroutine(MarkCell(CurrentCell, _playerSide));
         }
 
         public void HandleMarkInput() => HandleMarkInput(new InputAction.CallbackContext());
@@ -161,19 +164,34 @@ namespace Board
             var bestCell = GetBestCell();
             yield return new WaitForSeconds(Random.Range(1.5f, 2.75f));
             _managerParent.ScreenOverlayManager.SwitchOverlay(_managerParent.ScreenOverlayManager.PlayerMoveOverlay);
-            MarkCell(bestCell, _turkSide);
-            _managerParent.ScreenOverlayManager.ToggleTurkThinking(false);
+            StartCoroutine(MarkCell(bestCell, _turkSide));
         }
 
-        private void MarkCell(Cell.Controller cell, Content content)
+        private IEnumerator MarkCell(Cell.Controller cell, Content content)
         {
             cell.MarkCell(content);
+
+            _isGameOver = true;
+            var timer = 0.0f;
+            var color = cell.spriteRenderer.color;
+            while (timer < 1.5f)
+            {
+                yield return null;
+                cell.spriteRenderer.color = new Color(color.r, color.g, color.b, timer / 1.5f);
+                timer += Time.deltaTime;
+            }
+            if (content == _playerSide) _managerParent.ScreenOverlayManager.SwitchOverlay(_managerParent.ScreenOverlayManager.TurkThinkingOverlay);
+            cell.spriteRenderer.color = new Color(color.r, color.g, color.b, 1.0f);
+            _isGameOver = false;
+            
             if (GetBoardGameState() != Result.MatchNotOver)
             {
                 _managerParent.GameManager.HandleGameOver(GetBoardGameState());
-                // _isGameOver = true;
             }
             _currentSide = Utility.Parser.GetOppositeSide(_currentSide);
+            
+            if (content == _turkSide) _managerParent.ScreenOverlayManager.ToggleTurkThinking(false);
+            if (content == _playerSide) MarkTurkCell();
         }
 
         private Result GetBoardGameState()

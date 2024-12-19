@@ -4,7 +4,7 @@ namespace Board.Cell
 {
     public class Controller : MonoBehaviour
     {
-        [SerializeField] private SpriteRenderer spriteRenderer;
+        [SerializeField] public SpriteRenderer spriteRenderer;
         [SerializeField] private Sprite xSprite;
         [SerializeField] private Sprite oSprite;
         public Content Content { get; private set; } = Content.Empty;
