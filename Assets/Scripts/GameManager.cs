@@ -36,18 +36,18 @@ public class GameManager : MonoBehaviour
         if (_insertedCoinsAmount < 1) return;
         
         _insertedCoinsAmount--;
-        managerParent.BoardManager.ResetBoard();
+        managerParent.TicTacToeBoardManager.ResetTicTacToe();
     }
 
     private void StartGameOnOffScreen()
     {
-        if (managerParent.BoardManager.BoardController != null) return;
+        if (managerParent.TicTacToeBoardManager.TicTacToeBoardController != null) return;
         managerParent.GameManager.StartGame();
     }
 
     public void HandleGameOver(Result result)
     {
-        Destroy(managerParent.BoardManager.BoardController.gameObject);
+        Destroy(managerParent.TicTacToeBoardManager.TicTacToeBoardController.gameObject);
         StartCoroutine(HandleGameEndDisplay(result));
     }
 

@@ -19,7 +19,13 @@ public class ButtonController : MonoBehaviour
     [SerializeField] private Sprite gamepadMarkButtonImage;
     [SerializeField] private Sprite keyboardMarkButtonImage;
     
+    [Header("Quit Note Setup")]
+    [SerializeField] private Image quitNoteImage;
+    [SerializeField] private Sprite pcQuitNote;
+    [SerializeField] private Sprite gamepadQuitNote;
+    
     private ManagerParent _managerParent;
+    
 
     private void Awake()
     {
@@ -48,19 +54,19 @@ public class ButtonController : MonoBehaviour
 
     public void HandleMovementButtonPress(int direction)
     {
-        if (_managerParent.BoardManager.BoardController == null) return;
-        _managerParent.BoardManager.BoardController.HandleMovementInput(direction);
+        if (_managerParent.TicTacToeBoardManager.TicTacToeBoardController == null) return;
+        _managerParent.TicTacToeBoardManager.TicTacToeBoardController.HandleMovementInput(direction);
     }
 
     public void HandleMarkButtonPress()
     {
-        if (_managerParent.BoardManager.BoardController == null)
+        if (_managerParent.TicTacToeBoardManager.TicTacToeBoardController == null)
         {
             _managerParent.GameManager.StartGame();
         }
         else
         {
-            _managerParent.BoardManager.BoardController.HandleMarkInput();
+            _managerParent.TicTacToeBoardManager.TicTacToeBoardController.HandleMarkInput();
         }
     }
 

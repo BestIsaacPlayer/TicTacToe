@@ -1,15 +1,15 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Board
+namespace RPC
 {
     public class Manager : MonoBehaviour
     {
         [Header("Board Setup")]
         [SerializeField] private Transform boardTransform;
         [SerializeField] private Controller boardPrefab;
-        public Controller TicTacToeBoardController { get; private set; }
-        public Action ResetTicTacToe;
+        public Controller RPCBoardController { get; private set; }
+        public Action ResetRPC;
 
         private void OnValidate()
         {
@@ -19,13 +19,13 @@ namespace Board
 
         private void Awake()
         {
-            ResetTicTacToe += SpawnBoard;
+            ResetRPC += SpawnBoard;
         }
 
         private void SpawnBoard()
         {
-            if (TicTacToeBoardController) Destroy(TicTacToeBoardController.gameObject);
-            TicTacToeBoardController = Instantiate(boardPrefab, boardTransform.position, Quaternion.identity);
+            if (RPCBoardController) Destroy(RPCBoardController.gameObject);
+            RPCBoardController = Instantiate(boardPrefab, boardTransform.position, Quaternion.identity);
         }
     }
 }
