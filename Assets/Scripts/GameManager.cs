@@ -16,6 +16,8 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         managerParent.InputManager.InputActions.Main.Quit.performed += _ => HandleGameExit();
+        managerParent.InputManager.InputActions.Main.Enter.performed += _ => InsertCoin();
+        managerParent.InputManager.InputActions.Main.Mark.performed += _ => StartGameOnOffScreen();
         managerParent.ScreenOverlayManager.SwitchOverlay(managerParent.ScreenOverlayManager.ScreenOffOverlay);
     }
 
@@ -28,6 +30,14 @@ public class GameManager : MonoBehaviour
         {
             _insertedCoinsAmount--;
             managerParent.BoardManager.ResetBoard();
+        }
+    }
+
+    public void StartGameOnOffScreen()
+    {
+        if (managerParent.BoardManager.BoardController == null)
+        {
+            managerParent.GameManager.StartGame();
         }
     }
 

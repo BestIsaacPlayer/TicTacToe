@@ -133,15 +133,8 @@ namespace Board
             
             MarkTurkCell();
         }
-        
-        public void HandleMarkInput()
-        {
-            if (_currentSide != _playerSide || CurrentCell.Content != Content.Empty || _isGameOver) return;
-            
-            MarkCell(CurrentCell, _playerSide);
-            
-            MarkTurkCell();
-        }
+
+        public void HandleMarkInput() => HandleMarkInput(new InputAction.CallbackContext());
 
         private void MarkTurkCell()
         {

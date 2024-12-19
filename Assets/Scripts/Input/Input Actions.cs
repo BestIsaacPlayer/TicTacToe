@@ -55,6 +55,15 @@ namespace Input
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Enter"",
+                    ""type"": ""Button"",
+                    ""id"": ""32b55b79-fce8-47fe-90ac-52bf64c196e7"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -134,6 +143,17 @@ namespace Input
                     ""action"": ""Quit"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""34c739d5-2bb7-4a04-b17c-b56f73d4d664"",
+                    ""path"": ""<Keyboard>/enter"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Enter"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -145,6 +165,7 @@ namespace Input
             m_Main_Movement = m_Main.FindAction("Movement", throwIfNotFound: true);
             m_Main_Mark = m_Main.FindAction("Mark", throwIfNotFound: true);
             m_Main_Quit = m_Main.FindAction("Quit", throwIfNotFound: true);
+            m_Main_Enter = m_Main.FindAction("Enter", throwIfNotFound: true);
         }
 
         ~@InputActions()
@@ -214,6 +235,7 @@ namespace Input
         private readonly InputAction m_Main_Movement;
         private readonly InputAction m_Main_Mark;
         private readonly InputAction m_Main_Quit;
+        private readonly InputAction m_Main_Enter;
         public struct MainActions
         {
             private @InputActions m_Wrapper;
@@ -221,6 +243,7 @@ namespace Input
             public InputAction @Movement => m_Wrapper.m_Main_Movement;
             public InputAction @Mark => m_Wrapper.m_Main_Mark;
             public InputAction @Quit => m_Wrapper.m_Main_Quit;
+            public InputAction @Enter => m_Wrapper.m_Main_Enter;
             public InputActionMap Get() { return m_Wrapper.m_Main; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -239,6 +262,9 @@ namespace Input
                 @Quit.started += instance.OnQuit;
                 @Quit.performed += instance.OnQuit;
                 @Quit.canceled += instance.OnQuit;
+                @Enter.started += instance.OnEnter;
+                @Enter.performed += instance.OnEnter;
+                @Enter.canceled += instance.OnEnter;
             }
 
             private void UnregisterCallbacks(IMainActions instance)
@@ -252,6 +278,9 @@ namespace Input
                 @Quit.started -= instance.OnQuit;
                 @Quit.performed -= instance.OnQuit;
                 @Quit.canceled -= instance.OnQuit;
+                @Enter.started -= instance.OnEnter;
+                @Enter.performed -= instance.OnEnter;
+                @Enter.canceled -= instance.OnEnter;
             }
 
             public void RemoveCallbacks(IMainActions instance)
@@ -274,6 +303,7 @@ namespace Input
             void OnMovement(InputAction.CallbackContext context);
             void OnMark(InputAction.CallbackContext context);
             void OnQuit(InputAction.CallbackContext context);
+            void OnEnter(InputAction.CallbackContext context);
         }
     }
 }
