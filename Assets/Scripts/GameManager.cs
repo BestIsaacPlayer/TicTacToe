@@ -6,9 +6,11 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private ManagerParent managerParent;
-
-    public Action CoinAmountChanged;
+    [SerializeField] private AudioClip backgroundMusic;
+    [SerializeField] private AudioClip coinInsertSound;
+    
     private int _insertedCoinsAmount;
+    private AudioSource _audioSource;
 
     private void Awake()
     {
@@ -22,6 +24,7 @@ public class GameManager : MonoBehaviour
         managerParent.InputManager.InputActions.Main.Mark.performed += _ => StartGameOnOffScreen();
         managerParent.ScreenOverlayManager.SwitchOverlay(managerParent.ScreenOverlayManager.ScreenOffOverlay);
         managerParent.ScreenOverlayManager.OffScreenText.text = "You're out of credits!";
+        _audioSource = managerParent.AudioManager.PlayClip(backgroundMusic, true);
     }
 
     public void StartGame()
@@ -68,12 +71,14 @@ public class GameManager : MonoBehaviour
 
     public void InsertCoin()
     {
+        managerParent.AudioManager.PlayClip(coinInsertSound);
         _insertedCoinsAmount++;
         managerParent.ScreenOverlayManager.OffScreenText.text = "Press the MARK button to start the game!";
     }
 
-    public static void HandleGameExit()
+    public void HandleGameExit()
     {
+        Destroy(_audioSource.gameObject);
         Application.Quit();
     }
 }

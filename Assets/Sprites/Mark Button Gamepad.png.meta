@@ -1,0 +1,559 @@
+fileFormatVersion: 2
+guid: bdc83aaa308e20a419cb5a04bce2ff72
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 6130449402723854890
+    second: Mark Button Gamepad_0
+  - first:
+      213: -3217262051569906539
+    second: Mark Button Gamepad_1
+  - first:
+      213: 2256173604600168054
+    second: Mark Button Gamepad_2
+  - first:
+      213: 5588803686382678909
+    second: Mark Button Gamepad_3
+  - first:
+      213: -6668349789912670276
+    second: Mark Button Gamepad_4
+  - first:
+      213: 4192883234169387635
+    second: Mark Button Gamepad_5
+  - first:
+      213: -8241477749873691204
+    second: Mark Button Gamepad_6
+  - first:
+      213: -398232885252598123
+    second: Mark Button Gamepad_7
+  - first:
+      213: -1146963047730517545
+    second: Mark Button Gamepad_8
+  - first:
+      213: 3366724708363215976
+    second: Mark Button Gamepad_9
+  - first:
+      213: 5326748244552926567
+    second: Mark Button Gamepad_10
+  - first:
+      213: 4654454023401016087
+    second: Mark Button Gamepad_11
+  - first:
+      213: -6637865075505742948
+    second: Mark Button Gamepad_12
+  - first:
+      213: 954976381273329139
+    second: Mark Button Gamepad_13
+  - first:
+      213: -8621635936642109845
+    second: Mark Button Gamepad_14
+  - first:
+      213: 4375834435967455833
+    second: Mark Button Gamepad_15
+  - first:
+      213: -4005267810185742859
+    second: Mark Button Gamepad_16
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 128
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Mark Button Gamepad_0
+      rect:
+        serializedVersion: 2
+        x: 25
+        y: 72
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a2a6cd2504bb31550800000000000000
+      internalID: 6130449402723854890
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mark Button Gamepad_1
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 73
+        width: 9
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 59cc4dab53df953d0800000000000000
+      internalID: -3217262051569906539
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mark Button Gamepad_2
+      rect:
+        serializedVersion: 2
+        x: 52
+        y: 72
+        width: 10
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 67e3ecd80f98f4f10800000000000000
+      internalID: 2256173604600168054
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mark Button Gamepad_3
+      rect:
+        serializedVersion: 2
+        x: 63
+        y: 71
+        width: 10
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d73bb3e875b6f8d40800000000000000
+      internalID: 5588803686382678909
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mark Button Gamepad_4
+      rect:
+        serializedVersion: 2
+        x: 27
+        y: 59
+        width: 8
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cbf543e42334573a0800000000000000
+      internalID: -6668349789912670276
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mark Button Gamepad_5
+      rect:
+        serializedVersion: 2
+        x: 35
+        y: 58
+        width: 8
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 37a7b5d261d103a30800000000000000
+      internalID: 4192883234169387635
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mark Button Gamepad_6
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 59
+        width: 7
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cb53e76d6a360ad80800000000000000
+      internalID: -8241477749873691204
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mark Button Gamepad_7
+      rect:
+        serializedVersion: 2
+        x: 51
+        y: 59
+        width: 7
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 596d3a00d41397af0800000000000000
+      internalID: -398232885252598123
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mark Button Gamepad_8
+      rect:
+        serializedVersion: 2
+        x: 59
+        y: 59
+        width: 10
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7d9e5895f2b2510f0800000000000000
+      internalID: -1146963047730517545
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mark Button Gamepad_9
+      rect:
+        serializedVersion: 2
+        x: 67
+        y: 61
+        width: 8
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 864258ad84209be20800000000000000
+      internalID: 3366724708363215976
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mark Button Gamepad_10
+      rect:
+        serializedVersion: 2
+        x: 75
+        y: 60
+        width: 8
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 765438c5e496ce940800000000000000
+      internalID: 5326748244552926567
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mark Button Gamepad_11
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 60
+        width: 10
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 71b84302641f79040800000000000000
+      internalID: 4654454023401016087
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mark Button Gamepad_12
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 37
+        width: 8
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c9b328bf1e091e3a0800000000000000
+      internalID: -6637865075505742948
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mark Button Gamepad_13
+      rect:
+        serializedVersion: 2
+        x: 41
+        y: 39
+        width: 10
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3fd4fa685f1c04d00800000000000000
+      internalID: 954976381273329139
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mark Button Gamepad_14
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 37
+        width: 7
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b6e64b58bcbc95880800000000000000
+      internalID: -8621635936642109845
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mark Button Gamepad_15
+      rect:
+        serializedVersion: 2
+        x: 57
+        y: 39
+        width: 12
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 95213cf3c361abc30800000000000000
+      internalID: 4375834435967455833
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mark Button Gamepad_16
+      rect:
+        serializedVersion: 2
+        x: 69
+        y: 40
+        width: 14
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5f5729fb52e6a68c0800000000000000
+      internalID: -4005267810185742859
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Mark Button Gamepad_0: 6130449402723854890
+      Mark Button Gamepad_1: -3217262051569906539
+      Mark Button Gamepad_10: 5326748244552926567
+      Mark Button Gamepad_11: 4654454023401016087
+      Mark Button Gamepad_12: -6637865075505742948
+      Mark Button Gamepad_13: 954976381273329139
+      Mark Button Gamepad_14: -8621635936642109845
+      Mark Button Gamepad_15: 4375834435967455833
+      Mark Button Gamepad_16: -4005267810185742859
+      Mark Button Gamepad_2: 2256173604600168054
+      Mark Button Gamepad_3: 5588803686382678909
+      Mark Button Gamepad_4: -6668349789912670276
+      Mark Button Gamepad_5: 4192883234169387635
+      Mark Button Gamepad_6: -8241477749873691204
+      Mark Button Gamepad_7: -398232885252598123
+      Mark Button Gamepad_8: -1146963047730517545
+      Mark Button Gamepad_9: 3366724708363215976
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

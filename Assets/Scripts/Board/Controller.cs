@@ -160,7 +160,6 @@ namespace Board
 
         private IEnumerator TurkMoveCoroutine()
         {
-            _managerParent.ScreenOverlayManager.ToggleTurkThinking(true);
             var bestCell = GetBestCell();
             yield return new WaitForSeconds(Random.Range(1.5f, 2.75f));
             _managerParent.ScreenOverlayManager.SwitchOverlay(_managerParent.ScreenOverlayManager.PlayerMoveOverlay);
@@ -187,10 +186,10 @@ namespace Board
             if (GetBoardGameState() != Result.MatchNotOver)
             {
                 _managerParent.GameManager.HandleGameOver(GetBoardGameState());
+                _isGameOver = true;
             }
             _currentSide = Utility.Parser.GetOppositeSide(_currentSide);
             
-            if (content == _turkSide) _managerParent.ScreenOverlayManager.ToggleTurkThinking(false);
             if (content == _playerSide) MarkTurkCell();
         }
 

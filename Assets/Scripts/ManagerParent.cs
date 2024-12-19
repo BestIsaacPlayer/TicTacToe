@@ -6,6 +6,7 @@ public class ManagerParent : MonoBehaviour
     [field: SerializeField] public Board.Manager BoardManager { get; private set; }
     [field: SerializeField] public GameManager GameManager { get; private set; }
     [field: SerializeField] public ScreenOverlayManager ScreenOverlayManager { get; private set; }
+    [field: SerializeField] public AudioManager AudioManager { get; private set; }
 
     private void OnValidate()
     {
@@ -13,5 +14,6 @@ public class ManagerParent : MonoBehaviour
         if (!BoardManager) Debug.LogError($"The {Utility.Parser.FieldToName(nameof(BoardManager))} field in the {gameObject.name} object is unset!");
         if (!GameManager) Debug.LogError($"The {Utility.Parser.FieldToName(nameof(GameManager))} field in the {gameObject.name} object is unset!");
         if (!ScreenOverlayManager) Debug.LogError($"The {Utility.Parser.FieldToName(nameof(ScreenOverlayManager))} field in the {gameObject.name} object is unset!");
+        if (!AudioManager) Debug.LogError($"The {Utility.Parser.FieldToName(nameof(AudioManager))} field in the {gameObject.name} object is unset!");
     }
 }

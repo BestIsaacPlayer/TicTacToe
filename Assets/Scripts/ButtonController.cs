@@ -1,15 +1,24 @@
-﻿using System;
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
-using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class ButtonController : MonoBehaviour
 {
     private ManagerParent _managerParent;
-
-    [SerializeField] private TextMeshProUGUI exitText;
-    [SerializeField] private TextMeshProUGUI noteText;
+    
     [SerializeField] private TextMeshProUGUI markText;
+
+    [SerializeField] private Sprite noteTextKeyboardSprite;
+    [SerializeField] private Sprite noteTextGamepadSprite;
+    [SerializeField] private Image noteTextImage;
+
+    [SerializeField] private Image exitButtonImage;
+    [SerializeField] private Sprite gamepadExitImage;
+    [SerializeField] private Sprite keyboardExitImage;
+    
+    [SerializeField] private Image markButtonImage;
+    [SerializeField] private Sprite gamepadMarkButtonImage;
+    [SerializeField] private Sprite keyboardMarkButtonImage;
 
     private void Awake()
     {
@@ -24,14 +33,14 @@ public class ButtonController : MonoBehaviour
         switch (device)
         {
             case "Keyboard":
-                exitText.text = "[ESCAPE]";
-                noteText.text = "[ENTER] coins to play!";
-                markText.text = "Mark selected [SPACE]";
+                exitButtonImage.sprite = keyboardExitImage;
+                noteTextImage.sprite = noteTextKeyboardSprite;
+                markButtonImage.sprite = keyboardMarkButtonImage;
                 break;
             case "Gamepad":
-                exitText.text = "E[X]it";
-                noteText.text = "Enter coins to pl[A]y";
-                markText.text = "Mark selected [B]ox";
+                exitButtonImage.sprite = gamepadExitImage;
+                noteTextImage.sprite = noteTextGamepadSprite;
+                markButtonImage.sprite = gamepadMarkButtonImage;
                 break;
         }
     }
@@ -58,6 +67,6 @@ public class ButtonController : MonoBehaviour
 
     public void HandleExitButtonPress()
     {
-        GameManager.HandleGameExit();
+        _managerParent.GameManager.HandleGameExit();
     }
 }
