@@ -19,4 +19,9 @@ public class ButtonController : MonoBehaviour
     {
         _managerParent.BoardManager.BoardController.HandleMarkInput();
     }
+
+    public void HandleExitButtonPress()
+    {
+        _managerParent.GameManager.HandleGameExit();
+    }
 }

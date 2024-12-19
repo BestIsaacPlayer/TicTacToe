@@ -33,7 +33,6 @@ namespace Board
 
         private void Awake()
         {
-            Debug.Log("Dupa");
             _managerParent = FindFirstObjectByType<ManagerParent>();
             if (!_managerParent) Debug.LogError($"The {Utility.Parser.FieldToName(nameof(_managerParent))} field in the {gameObject.name} object is unset!");
             
