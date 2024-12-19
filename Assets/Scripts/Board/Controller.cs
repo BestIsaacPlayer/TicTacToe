@@ -44,7 +44,18 @@ namespace Board
         {
             _managerParent.InputManager.InputActions.Main.Movement.performed += HandleMovementInput;
             _managerParent.InputManager.InputActions.Main.Mark.performed += HandleMarkInput;
+            _managerParent.ScreenOverlayManager.OffScreenText.text = "You're out of credits!";
 
+            StartCoroutine(BoardLoadedDelay());
+        }
+
+        private IEnumerator BoardLoadedDelay()
+        {
+            _isGameOver = true;
+            _managerParent.ScreenOverlayManager.OffScreenText.text = $"You are {(_playerSide == Content.X ? "X" : "O")}";
+            yield return new WaitForSeconds(2f);
+            _isGameOver = false;
+            
             if (_currentSide == _turkSide)
             {
                 _managerParent.ScreenOverlayManager.SwitchOverlay(_managerParent.ScreenOverlayManager.TurkThinkingOverlay);
@@ -146,11 +157,12 @@ namespace Board
 
         private IEnumerator TurkMoveCoroutine()
         {
-            
+            _managerParent.ScreenOverlayManager.ToggleTurkThinking(true);
             var bestCell = GetBestCell();
             yield return new WaitForSeconds(Random.Range(1.5f, 2.75f));
             _managerParent.ScreenOverlayManager.SwitchOverlay(_managerParent.ScreenOverlayManager.PlayerMoveOverlay);
             MarkCell(bestCell, _turkSide);
+            _managerParent.ScreenOverlayManager.ToggleTurkThinking(false);
         }
 
         private void MarkCell(Cell.Controller cell, Content content)
