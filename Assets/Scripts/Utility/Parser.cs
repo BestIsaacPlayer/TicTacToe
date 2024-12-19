@@ -33,7 +33,7 @@ namespace Utility
             return content == Board.Cell.Content.X ? Board.Result.XWon : Board.Result.OWon;
         }
 
-        public static Direction Vector2ToDirection(Vector2 vector)
+        public static Direction Vector2ToDirection(this Vector2 vector)
         {
             return vector.x switch
             {

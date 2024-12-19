@@ -4,6 +4,7 @@ using System.Linq;
 using Board.Cell;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Utility;
 using Random = UnityEngine.Random;
 
 namespace Board
@@ -80,7 +81,7 @@ namespace Board
 
         private void HandleMovementInput(InputAction.CallbackContext context)
         {
-            var direction = Utility.Parser.Vector2ToDirection(context.ReadValue<Vector2>());
+            var direction = context.ReadValue<Vector2>().Vector2ToDirection();
             
             var x = Math.DivRem(_currentCellIndex, 3, out var y);
 
