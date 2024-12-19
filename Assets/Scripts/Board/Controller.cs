@@ -45,8 +45,6 @@ namespace Board
             _managerParent.InputManager.InputActions.Main.Movement.performed += HandleMovementInput;
             _managerParent.InputManager.InputActions.Main.Mark.performed += HandleMarkInput;
             
-            Debug.Log(EmptyCells.Length);
-            
             if (_currentSide == _turkSide) MarkTurkCell();
         }
 
@@ -88,7 +86,46 @@ namespace Board
             indicatorTransform.position = CurrentCell.transform.position;
         }
 
+        public void HandleMovementInput(int direction)
+        {
+            var x = Math.DivRem(_currentCellIndex, 3, out var y);
+
+            switch (direction)
+            {
+                case 3:
+                    y += 1;
+                    if (y > 2) y = 0;
+                    break;
+                case 2:
+                    y -= 1;
+                    if (y < 0) y = 2;
+                    break;
+                case 0:
+                    x -= 1;
+                    if (x < 0) x = 2;
+                    break;
+                case 1:
+                    x += 1;
+                    if (x > 2) x = 0;
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+
+            _currentCellIndex = 3 * x + y;
+            indicatorTransform.position = CurrentCell.transform.position;
+        }
+
         private void HandleMarkInput(InputAction.CallbackContext context)
+        {
+            if (_currentSide != _playerSide || CurrentCell.Content != Content.Empty || _isGameOver) return;
+            
+            MarkCell(CurrentCell, _playerSide);
+            
+            MarkTurkCell();
+        }
+        
+        public void HandleMarkInput()
         {
             if (_currentSide != _playerSide || CurrentCell.Content != Content.Empty || _isGameOver) return;
             
@@ -100,6 +137,8 @@ namespace Board
         private void MarkTurkCell()
         {
             if (_currentSide != _turkSide || _isGameOver) return;
+            indicatorTransform.position = Cells[4].transform.position;
+            _currentCellIndex = 4;
             var bestCell = GetBestCell();
             MarkCell(bestCell, _turkSide);
         }

@@ -957,7 +957,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 376503192}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1151847269}
+        m_TargetAssemblyTypeName: ButtonController, Assembly-CSharp
+        m_MethodName: HandleMovementButtonPress
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 3
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &376503192
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1125,7 +1137,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 377843217}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1151847269}
+        m_TargetAssemblyTypeName: ButtonController, Assembly-CSharp
+        m_MethodName: HandleMovementButtonPress
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &377843217
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1393,7 +1417,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 657943633}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1151847269}
+        m_TargetAssemblyTypeName: ButtonController, Assembly-CSharp
+        m_MethodName: HandleMovementButtonPress
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &657943633
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1948,6 +1984,7 @@ GameObject:
   - component: {fileID: 1151847266}
   - component: {fileID: 1151847268}
   - component: {fileID: 1151847267}
+  - component: {fileID: 1151847269}
   m_Layer: 5
   m_Name: Overlay
   m_TagString: Untagged
@@ -2018,6 +2055,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1151847265}
   m_CullTransparentMesh: 1
+--- !u!114 &1151847269
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1151847265}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1a0c7445f9f47c8acf4921b55fe2994, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1446723753
 GameObject:
   m_ObjectHideFlags: 0
@@ -2124,8 +2173,8 @@ RectTransform:
   m_Children:
   - {fileID: 657943631}
   - {fileID: 1737336099}
-  - {fileID: 376503190}
   - {fileID: 377843215}
+  - {fileID: 376503190}
   m_Father: {fileID: 1151847266}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -2634,7 +2683,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1668929414}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1151847269}
+        m_TargetAssemblyTypeName: ButtonController, Assembly-CSharp
+        m_MethodName: HandleMarkButtonPress
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1668929414
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2755,7 +2816,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1737336101}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1151847269}
+        m_TargetAssemblyTypeName: ButtonController, Assembly-CSharp
+        m_MethodName: HandleMovementButtonPress
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1737336101
 MonoBehaviour:
   m_ObjectHideFlags: 0

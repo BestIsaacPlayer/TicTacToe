@@ -8,7 +8,7 @@ namespace Board
         [SerializeField] private Transform boardTransform;
         [SerializeField] private Controller boardPrefab;
         public Action ResetBoard;
-        private Controller _boardController;
+        public Controller BoardController { get; private set; }
 
         private void OnValidate()
         {
@@ -24,8 +24,8 @@ namespace Board
 
         private void SpawnBoard()
         {
-            if (_boardController) Destroy(_boardController.gameObject);
-            _boardController = Instantiate(boardPrefab, boardTransform.position, Quaternion.identity);
+            if (BoardController) Destroy(BoardController.gameObject);
+            BoardController = Instantiate(boardPrefab, boardTransform.position, Quaternion.identity);
         }
     }
 }
