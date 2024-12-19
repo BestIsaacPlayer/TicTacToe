@@ -818,10 +818,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -1363,9 +1363,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 932995051b3e478e852e29744852f1a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  managerParent: {fileID: 23522297478711236}
   backgroundMusic: {fileID: 8300000, guid: a666683508d2a004ba051e1ed7289758, type: 3}
   coinInsertSound: {fileID: 8300000, guid: a76e6116f04c06c4682133e98ec113f2, type: 3}
+  managerParent: {fileID: 23522297478711236}
 --- !u!4 &653609210
 Transform:
   m_ObjectHideFlags: 0
@@ -2024,7 +2024,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1a0c7445f9f47c8acf4921b55fe2994, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  markText: {fileID: 0}
   noteTextKeyboardSprite: {fileID: 21300000, guid: 7820d3dafbabc4348aae90eab5f70fda, type: 3}
   noteTextGamepadSprite: {fileID: 21300000, guid: bd14d87e650abcd4cb0263aea8474072, type: 3}
   noteTextImage: {fileID: 760073529}
