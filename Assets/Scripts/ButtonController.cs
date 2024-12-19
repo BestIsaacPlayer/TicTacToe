@@ -12,16 +12,26 @@ public class ButtonController : MonoBehaviour
 
     public void HandleMovementButtonPress(int direction)
     {
+        if (_managerParent.BoardManager.BoardController == null) return;
         _managerParent.BoardManager.BoardController.HandleMovementInput(direction);
     }
 
     public void HandleMarkButtonPress()
     {
-        _managerParent.BoardManager.BoardController.HandleMarkInput();
+        if (_managerParent.BoardManager.BoardController == null)
+        {
+            _managerParent.GameManager.StartGame();
+        }
+        else
+        {
+            _managerParent.BoardManager.BoardController.HandleMarkInput();
+        }
     }
+
+    public void HandleCoinInserted() => _managerParent.GameManager.InsertCoin();
 
     public void HandleExitButtonPress()
     {
-        _managerParent.GameManager.HandleGameExit();
+        GameManager.HandleGameExit();
     }
 }

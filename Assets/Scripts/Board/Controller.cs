@@ -44,8 +44,16 @@ namespace Board
         {
             _managerParent.InputManager.InputActions.Main.Movement.performed += HandleMovementInput;
             _managerParent.InputManager.InputActions.Main.Mark.performed += HandleMarkInput;
-            
-            if (_currentSide == _turkSide) MarkTurkCell();
+
+            if (_currentSide == _turkSide)
+            {
+                _managerParent.ScreenOverlayManager.SwitchOverlay(_managerParent.ScreenOverlayManager.TurkThinkingOverlay);
+                MarkTurkCell();
+            }
+            else
+            {
+                _managerParent.ScreenOverlayManager.SwitchOverlay(_managerParent.ScreenOverlayManager.PlayerMoveOverlay);
+            }
         }
 
         private void OnDestroy()
@@ -120,6 +128,7 @@ namespace Board
         {
             if (_currentSide != _playerSide || CurrentCell.Content != Content.Empty || _isGameOver) return;
             
+            _managerParent.ScreenOverlayManager.SwitchOverlay(_managerParent.ScreenOverlayManager.TurkThinkingOverlay);
             MarkCell(CurrentCell, _playerSide);
             
             MarkTurkCell();
@@ -147,6 +156,7 @@ namespace Board
             
             var bestCell = GetBestCell();
             yield return new WaitForSeconds(Random.Range(1.5f, 2.75f));
+            _managerParent.ScreenOverlayManager.SwitchOverlay(_managerParent.ScreenOverlayManager.PlayerMoveOverlay);
             MarkCell(bestCell, _turkSide);
         }
 
@@ -155,8 +165,8 @@ namespace Board
             cell.MarkCell(content);
             if (GetBoardGameState() != Result.MatchNotOver)
             {
-                _managerParent.BoardManager.ResetBoard?.Invoke();
-                _isGameOver = true;
+                _managerParent.GameManager.HandleGameOver(GetBoardGameState());
+                // _isGameOver = true;
             }
             _currentSide = Utility.Parser.GetOppositeSide(_currentSide);
         }

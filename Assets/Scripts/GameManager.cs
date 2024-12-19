@@ -1,20 +1,45 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] private Input.Manager inputManager;
+    [SerializeField] private ManagerParent managerParent;
+
+    public Action CoinAmountChanged;
+    private int _insertedCoinsAmount;
 
     private void Awake()
     {
-        if (!inputManager) Debug.LogError($"The {Utility.Parser.FieldToName(nameof(inputManager))} field in the {gameObject.name} object is unset!");
+        if (!managerParent) Debug.LogError($"The {Utility.Parser.FieldToName(nameof(managerParent))} field in the {gameObject.name} object is unset!");
     }
 
     private void Start()
     {
-        inputManager.InputActions.Main.Quit.performed += _ => HandleGameExit();
+        managerParent.InputManager.InputActions.Main.Quit.performed += _ => HandleGameExit();
+        managerParent.ScreenOverlayManager.SwitchOverlay(managerParent.ScreenOverlayManager.ScreenOffOverlay);
     }
 
-    public void HandleGameExit()
+    public void StartGame()
+    {
+        if (_insertedCoinsAmount < 1)
+        {
+        }
+        else
+        {
+            _insertedCoinsAmount--;
+            managerParent.BoardManager.ResetBoard();
+        }
+    }
+
+    public void HandleGameOver(Board.Result result)
+    {
+        Destroy(managerParent.BoardManager.BoardController.gameObject);
+        managerParent.ScreenOverlayManager.SwitchOverlay(managerParent.ScreenOverlayManager.ScreenOffOverlay);
+    }
+    
+    public void InsertCoin() => _insertedCoinsAmount++;
+
+    public static void HandleGameExit()
     {
         Application.Quit();
     }

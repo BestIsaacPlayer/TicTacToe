@@ -19,7 +19,6 @@ namespace Board
         private void Awake()
         {
             ResetBoard += SpawnBoard;
-            ResetBoard?.Invoke();
         }
 
         private void SpawnBoard()

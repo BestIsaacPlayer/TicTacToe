@@ -1575,7 +1575,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 932995051b3e478e852e29744852f1a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 9125316755377044896}
+  managerParent: {fileID: 23522297478711236}
 --- !u!4 &653609210
 Transform:
   m_ObjectHideFlags: 0
@@ -2150,7 +2150,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1003019623}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1151847269}
+        m_TargetAssemblyTypeName: ButtonController, Assembly-CSharp
+        m_MethodName: HandleCoinInserted
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1056497783
 GameObject:
   m_ObjectHideFlags: 0
@@ -3623,7 +3635,7 @@ MonoBehaviour:
   <InputManager>k__BackingField: {fileID: 9125316755377044896}
   <BoardManager>k__BackingField: {fileID: 376762632}
   <GameManager>k__BackingField: {fileID: 653609209}
-  <ScreenOverlayManager>k__BackingField: {fileID: 0}
+  <ScreenOverlayManager>k__BackingField: {fileID: 1061393688}
 --- !u!4 &4330074538470043161
 Transform:
   m_ObjectHideFlags: 0
