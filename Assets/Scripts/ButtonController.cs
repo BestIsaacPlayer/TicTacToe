@@ -1,5 +1,4 @@
-﻿using TMPro;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class ButtonController : MonoBehaviour
@@ -40,14 +39,14 @@ public class ButtonController : MonoBehaviour
         switch (device)
         {
             case "Keyboard":
-                exitButtonImage.sprite = keyboardExitImage;
-                noteTextImage.sprite = noteTextKeyboardSprite;
-                markButtonImage.sprite = keyboardMarkButtonImage;
+                if (exitButtonImage) exitButtonImage.sprite = keyboardExitImage;
+                if (noteTextImage) noteTextImage.sprite = noteTextKeyboardSprite;
+                if (markButtonImage) markButtonImage.sprite = keyboardMarkButtonImage;
                 break;
             case "Gamepad":
-                exitButtonImage.sprite = gamepadExitImage;
-                noteTextImage.sprite = noteTextGamepadSprite;
-                markButtonImage.sprite = gamepadMarkButtonImage;
+                if (exitButtonImage) exitButtonImage.sprite = gamepadExitImage;
+                if (noteTextImage) noteTextImage.sprite = noteTextGamepadSprite;
+                if (markButtonImage) markButtonImage.sprite = gamepadMarkButtonImage;
                 break;
         }
     }
@@ -62,7 +61,7 @@ public class ButtonController : MonoBehaviour
     {
         if (_managerParent.TicTacToeBoardManager.TicTacToeBoardController == null)
         {
-            _managerParent.GameManager.StartGame();
+            _managerParent.GameManager.StartTicTacToe();
         }
         else
         {
@@ -76,4 +75,19 @@ public class ButtonController : MonoBehaviour
     {
         _managerParent.GameManager.HandleGameExit();
     }
+
+    public void HandleRockButton()
+    {
+        if (_managerParent.RPCBoardManager.RPCBoardController == null)
+        {
+            _managerParent.GameManager.StartRPC();
+        }
+        else
+        {
+            _managerParent.RPCBoardManager.RPCBoardController.HandleButtonInput(RPC.Content.Rock);
+        }
+    }
+    
+    public void HandleScissorsButton() => _managerParent.RPCBoardManager.RPCBoardController.HandleButtonInput(RPC.Content.Scissors);
+    public void HandlePaperButton() => _managerParent.RPCBoardManager.RPCBoardController.HandleButtonInput(RPC.Content.Paper);
 }

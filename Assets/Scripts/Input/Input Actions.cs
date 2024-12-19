@@ -64,6 +64,33 @@ namespace Input
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Rock"",
+                    ""type"": ""Button"",
+                    ""id"": ""b87f228a-c192-400f-8180-5f4ccf701286"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Paper"",
+                    ""type"": ""Button"",
+                    ""id"": ""cc51c200-eb6e-43da-ac48-4c047ec15cf6"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Scissors"",
+                    ""type"": ""Button"",
+                    ""id"": ""e78fa560-a520-4cc6-8746-0de5c5e5f377"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -242,6 +269,72 @@ namespace Input
                     ""action"": ""Enter"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f3868d76-1d19-44d2-b187-1315718c882b"",
+                    ""path"": ""<Keyboard>/y"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard"",
+                    ""action"": ""Rock"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9307c146-6c72-479f-a9c2-e5fac8fdb09d"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""Rock"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e54ba0ff-2e21-42f7-b046-596e8674a178"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard"",
+                    ""action"": ""Paper"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0b478d71-aecd-4d7a-b05a-51a780c14735"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""Paper"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ad2fa897-3201-4127-89da-e0876154e2b5"",
+                    ""path"": ""<Keyboard>/l"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard"",
+                    ""action"": ""Scissors"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""350fca14-87ae-4996-84d1-c920cd321f01"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Scissors"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -282,6 +375,9 @@ namespace Input
             m_Main_Mark = m_Main.FindAction("Mark", throwIfNotFound: true);
             m_Main_Quit = m_Main.FindAction("Quit", throwIfNotFound: true);
             m_Main_Enter = m_Main.FindAction("Enter", throwIfNotFound: true);
+            m_Main_Rock = m_Main.FindAction("Rock", throwIfNotFound: true);
+            m_Main_Paper = m_Main.FindAction("Paper", throwIfNotFound: true);
+            m_Main_Scissors = m_Main.FindAction("Scissors", throwIfNotFound: true);
         }
 
         ~@InputActions()
@@ -352,6 +448,9 @@ namespace Input
         private readonly InputAction m_Main_Mark;
         private readonly InputAction m_Main_Quit;
         private readonly InputAction m_Main_Enter;
+        private readonly InputAction m_Main_Rock;
+        private readonly InputAction m_Main_Paper;
+        private readonly InputAction m_Main_Scissors;
         public struct MainActions
         {
             private @InputActions m_Wrapper;
@@ -360,6 +459,9 @@ namespace Input
             public InputAction @Mark => m_Wrapper.m_Main_Mark;
             public InputAction @Quit => m_Wrapper.m_Main_Quit;
             public InputAction @Enter => m_Wrapper.m_Main_Enter;
+            public InputAction @Rock => m_Wrapper.m_Main_Rock;
+            public InputAction @Paper => m_Wrapper.m_Main_Paper;
+            public InputAction @Scissors => m_Wrapper.m_Main_Scissors;
             public InputActionMap Get() { return m_Wrapper.m_Main; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -381,6 +483,15 @@ namespace Input
                 @Enter.started += instance.OnEnter;
                 @Enter.performed += instance.OnEnter;
                 @Enter.canceled += instance.OnEnter;
+                @Rock.started += instance.OnRock;
+                @Rock.performed += instance.OnRock;
+                @Rock.canceled += instance.OnRock;
+                @Paper.started += instance.OnPaper;
+                @Paper.performed += instance.OnPaper;
+                @Paper.canceled += instance.OnPaper;
+                @Scissors.started += instance.OnScissors;
+                @Scissors.performed += instance.OnScissors;
+                @Scissors.canceled += instance.OnScissors;
             }
 
             private void UnregisterCallbacks(IMainActions instance)
@@ -397,6 +508,15 @@ namespace Input
                 @Enter.started -= instance.OnEnter;
                 @Enter.performed -= instance.OnEnter;
                 @Enter.canceled -= instance.OnEnter;
+                @Rock.started -= instance.OnRock;
+                @Rock.performed -= instance.OnRock;
+                @Rock.canceled -= instance.OnRock;
+                @Paper.started -= instance.OnPaper;
+                @Paper.performed -= instance.OnPaper;
+                @Paper.canceled -= instance.OnPaper;
+                @Scissors.started -= instance.OnScissors;
+                @Scissors.performed -= instance.OnScissors;
+                @Scissors.canceled -= instance.OnScissors;
             }
 
             public void RemoveCallbacks(IMainActions instance)
@@ -438,6 +558,9 @@ namespace Input
             void OnMark(InputAction.CallbackContext context);
             void OnQuit(InputAction.CallbackContext context);
             void OnEnter(InputAction.CallbackContext context);
+            void OnRock(InputAction.CallbackContext context);
+            void OnPaper(InputAction.CallbackContext context);
+            void OnScissors(InputAction.CallbackContext context);
         }
     }
 }

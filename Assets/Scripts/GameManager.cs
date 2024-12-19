@@ -20,6 +20,8 @@ public class GameManager : MonoBehaviour
         
         managerParent.ScreenOverlayManager.SwitchOverlay(managerParent.ScreenOverlayManager.ScreenOffOverlay, typeof(Board.Controller));
         managerParent.ScreenOverlayManager.OffScreenText.text = "You're out of credits!";
+        managerParent.ScreenOverlayManager.SwitchOverlay(managerParent.ScreenOverlayManager.RPCScreenOffOverlay, typeof(RPC.Controller));
+        managerParent.ScreenOverlayManager.RPCOffScreenText.text = "ROCK TO START\nSTART TO ROCK";
         _audioSource = managerParent.AudioManager.PlayClip(backgroundMusic, true);
     }
 
@@ -28,20 +30,32 @@ public class GameManager : MonoBehaviour
         managerParent.InputManager.InputActions.Main.Quit.performed += _ => HandleGameExit();
         managerParent.InputManager.InputActions.Main.Enter.performed += _ => InsertCoin();
         managerParent.InputManager.InputActions.Main.Mark.performed += _ => StartGameOnOffScreen();
+        managerParent.InputManager.InputActions.Main.Rock.performed += _ => StartRPCOnOffScreen();
     }
 
-    public void StartGame()
+    public void StartTicTacToe()
     {
         if (_insertedCoinsAmount < 1) return;
         
         _insertedCoinsAmount--;
-        managerParent.TicTacToeBoardManager.ResetTicTacToe();
+        managerParent.TicTacToeBoardManager.ResetTicTacToe?.Invoke();
+    }
+
+    public void StartRPC()
+    {
+        managerParent.RPCBoardManager.ResetRPC?.Invoke();
     }
 
     private void StartGameOnOffScreen()
     {
         if (managerParent.TicTacToeBoardManager.TicTacToeBoardController != null) return;
-        managerParent.GameManager.StartGame();
+        managerParent.GameManager.StartTicTacToe();
+    }
+
+    private void StartRPCOnOffScreen()
+    {
+        if (managerParent.RPCBoardManager.RPCBoardController != null) return;
+        managerParent.GameManager.StartRPC();
     }
 
     public void HandleGameOver(Board.Result result)
