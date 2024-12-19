@@ -51,6 +51,11 @@ public class ButtonController : MonoBehaviour
         }
     }
 
+    public void HandleCashOut()
+    {
+        _managerParent.GameManager.CashOut();
+    }
+
     public void HandleMovementButtonPress(int direction)
     {
         if (_managerParent.TicTacToeBoardManager.TicTacToeBoardController == null) return;

@@ -125,6 +125,7 @@ namespace RPC
         private void PlayerWon()
         {
             _managerParent.ScreenOverlayManager.RPCMainScreenText.text = "You win!";
+            _managerParent.GameManager.AddCoins(1);
         }
 
         private void PlayerLost()

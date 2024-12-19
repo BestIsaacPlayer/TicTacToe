@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using TMPro;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -11,12 +12,19 @@ public class GameManager : MonoBehaviour
     [Space]
     [SerializeField] private ManagerParent managerParent;
     
+    [Space]
+    [SerializeField] private TextMeshProUGUI coinsText;
+    
     private int _insertedCoinsAmount;
+    private int _coinsAmount;
     private AudioSource _audioSource;
+
+    public Action OnCoinUpdate;
 
     private void Awake()
     {
         if (!managerParent) Debug.LogError($"The {Utility.Parser.FieldToName(nameof(managerParent))} field in the {gameObject.name} object is unset!");
+        OnCoinUpdate += UpdateUI;
         
         managerParent.ScreenOverlayManager.SwitchOverlay(managerParent.ScreenOverlayManager.ScreenOffOverlay, typeof(Board.Controller));
         managerParent.ScreenOverlayManager.OffScreenText.text = "You're out of credits!";
@@ -24,6 +32,8 @@ public class GameManager : MonoBehaviour
         managerParent.ScreenOverlayManager.RPCOffScreenText.text = "ROCK TO START\nSTART TO ROCK";
         _audioSource = managerParent.AudioManager.PlayClip(backgroundMusic, true);
     }
+    
+    private void UpdateUI() => coinsText.text = _coinsAmount.ToString();
 
     private void Start()
     {
@@ -80,10 +90,25 @@ public class GameManager : MonoBehaviour
         managerParent.ScreenOverlayManager.SwitchOverlay(managerParent.ScreenOverlayManager.ScreenOffOverlay, typeof(Board.Controller));
     }
 
+    public void AddCoins(int amount)
+    {
+        _coinsAmount += amount;
+        OnCoinUpdate?.Invoke();
+    }
+
+    public void CashOut()
+    {
+        _coinsAmount += _insertedCoinsAmount;
+        _insertedCoinsAmount = 0;
+        OnCoinUpdate?.Invoke();
+    }
+
     public void InsertCoin()
     {
+        if (_coinsAmount < 1) return;
         managerParent.AudioManager.PlayClip(coinInsertSound);
         _insertedCoinsAmount++;
+        _coinsAmount--;
         managerParent.ScreenOverlayManager.OffScreenText.text = "Press the MARK button to start the game!";
     }
 

@@ -186,6 +186,10 @@ namespace Board
             
             if (GetBoardGameState() != Result.MatchNotOver)
             {
+                if (Parser.ParseWinner(_playerSide) == GetBoardGameState())
+                {
+                    _managerParent.GameManager.AddCoins(3);
+                }
                 _managerParent.GameManager.HandleGameOver(GetBoardGameState());
                 _isGameOver = true;
             }
